@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="seminario-de-mongodb">Seminario de MongoDB</h1>
+<p>Este archivo contiene los comandos de los ejercicios del seminario de MongoDB</p>
+<h1 id="ejercicio-clase-1">Ejercicio clase 1</h1>
+<ol>
+<li>
+<p>Instalar MongoDB en ambiente local.</p>
+</li>
+<li>
+<p>Conectarse a MongoDB vía CLI.</p>
+</li>
+<li>
+<p>Crear una nueva base de datos llamada futbolfifa.</p>
+</li>
+<li>
+<p>Crear una nueva collection llamada players.</p>
+</li>
+<li>
+<p>Insertar 5 documentos en la collection players con datos básicos (nombre, apellido, posición, fecha de nacimiento, etc).</p>
+</li>
+<li>
+<p>Listar todos los documentos de la collection players.</p>
+</li>
+<li>
+<p>Crear otras collections con documentos (ej. teams, games, etc).</p>
+</li>
+</ol>
+<h2 id="comandos">Comandos</h2>
+<p><strong>mongod</strong><br>
+<strong>show dbs;</strong><br>
+admin       0.000GB<br>
+config      0.000GB<br>
+local       0.000GB<br>
+<strong>use futbolista</strong><br>
+switchet to  db futbolista</p>
+<ol>
+<li><strong>db.createCollection(“players”)</strong><br>
+{ “ok” : 1}</li>
+<li><strong>db.players.insert</strong>({nombre : “juan”, posicion : “delantero”, nacimiento :new ISODate(“1990-09-18T16:00:00Z”)})<br>
+WriteResult({ “nInserted” : 1 })</li>
+<li><strong>db.players.insert</strong>({nombre : “Agustin”, posicion : “Lateral”, nacimiento :new ISODate(“1989-07-03T16:00:00Z”)})</li>
+<li><strong>db.players.insert</strong>({nombre : “Juan Pablo”, posicion : “Defensor”, nacimiento :new ISODate(“1989-10-03T16:00:00Z”)})</li>
+<li><strong>db.players.insert</strong>{nombre : “Manuel”, posicion : “Defensor”, nacimiento :new ISODate(“1999-01-11T16:00:00Z”)})</li>
+<li><strong>db.players.insert</strong>({nombre : “Martin”, posicion : “central”, nacimiento :new ISODate(“1991-02-20T16:00:00Z”)})</li>
+<li><strong>db.players.find().pretty()</strong><br>
+{<br>
+“_id” : ObjectId(“5f95b670239066809c3946ac”),<br>
+“nombre” : “Pablo”,<br>
+“posicion” : “arquero”,<br>
+“nacimiento” : ISODate(“1995-09-18T16:00:00Z”)<br>
+}<br>
+{<br>
+“_id” : ObjectId(“5f95b698239066809c3946ad”),<br>
+“nombre” : “Martin”,<br>
+“posicion” : “central”,<br>
+“nacimiento” : ISODate(“1991-02-20T16:00:00Z”)<br>
+}<br>
+{<br>
+“_id” : ObjectId(“5f95b6c7239066809c3946ae”),<br>
+“nombre” : “Manuel”,<br>
+“posicion” : “Defensor”,<br>
+“nacimiento” : ISODate(“1999-01-11T16:00:00Z”)<br>
+}<br>
+{<br>
+“_id” : ObjectId(“5f95b714239066809c3946af”),<br>
+“nombre” : “Juan Pablo”,<br>
+“posicion” : “Defensor”,<br>
+“nacimiento” : ISODate(“1989-10-03T16:00:00Z”)<br>
+}<br>
+{<br>
+“_id” : ObjectId(“5f95b783239066809c3946b0”),<br>
+“nombre” : “Agustin”,<br>
+“posicion” : “Lateral”,<br>
+“nacimiento” : ISODate(“1989-07-03T16:00:00Z”)<br>
+}</li>
+</ol>
+<h1 id="ejercicio-clase-2">Ejercicio clase 2</h1>
+<ol>
+<li>
+<p>Crear una nueva base de datos de un sistema de streaming de video (ej. Netflix, Flow, Amazon Prime) que permita almacenar movies.</p>
+</li>
+<li>
+<p>Para cada movie, se debería guardar información como título (String), year (Number), rating (Number, entre 1.0 y 5.0), genre (String), description (String), actors (Array), country (String), income (Number), duration (Number).</p>
+</li>
+<li>
+<p>Agregar películas usando insert(), insertOne() &amp; insertMany().</p>
+</li>
+<li>
+<p>Actualizar películas agregando el field highlighted=true a aquellas con rating &gt; 4.5.</p>
+</li>
+</ol>
+<h2 id="comandos-1">Comandos</h2>
+<p><strong>use netflix</strong><br>
+switched to db netflix</p>
+<ol>
+<li><strong>db.createCollection(“movies”)</strong><br>
+{ “ok” : 1 }</li>
+<li><strong>db.movies.insert</strong>({nombre: “Terminator”,anio : 1999,rating: 1,genero: “Accion”,pais: “USA”,duracion: 120})<br>
+WriteResult({ “nInserted” : 1 })</li>
+<li><strong>db.movies.insertOne</strong>({nombre: “Terminator 2”,anio : 2002,rating: 2,genero: “Accion”,pais: “USA”,duracion: 130})<br>
+{<br>
+“acknowledged” : true,<br>
+“insertedId” : ObjectId(“5f99dcce7122a36a6655045c”)<br>
+}</li>
+<li><strong>db.movies.insertMany</strong>([<br>
+{nombre: “Gladiador”,anio : 2002,rating: 4,genero: “Accion”,pais: “USA”,duracion: 150},<br>
+{nombre: “Frozen”,anio : 2016,rating: 3,genero: “Animada”,pais: “USA”,duracion: 120},<br>
+{nombre: “Monsters Ink.”,anio : 2006,rating: 4,genero: “Animada”,pais: “USA”,duracion: 130},<br>
+{nombre: “Piratas del caribe”,anio : 2012,rating: 3,genero: “Aventura”,pais: “USA”,duracion: 130},{nombre: “Piratas del caribe 3”,anio : 2014,rating: 2,genero: “Aventura”,pais: “USA”,duracion: 130},{nombre: “Piratas del caribe 2”,anio : 2015,rating: 5,genero: “Aventura”,pais: “USA”,duracion: 130}<br>
+])<br>
+{<br>
+“acknowledged” : true,<br>
+“insertedIds” : [<br>
+ObjectId(“5f99de257122a36a6655045d”),<br>
+ObjectId(“5f99de257122a36a6655045e”),<br>
+ObjectId(“5f99de257122a36a6655045f”),<br>
+ObjectId(“5f99de257122a36a66550460”),<br>
+ObjectId(“5f99de257122a36a66550461”),<br>
+ObjectId(“5f99de257122a36a66550462”)<br>
+]<br>
+}</li>
+<li><strong>db.movies.updateMany</strong>({rating : {$ gt:3}},{$set: {destacada: true}},{ upsert: true })<br>
+{ “acknowledged” : true, “matchedCount” : 3, “modifiedCount” : 3 }<br>
+//aca me habia olvidado de agregar a los actores asi que setee un array vacio a todas las peliculas</li>
+<li><strong>db.movies.updateMany</strong> ({},{set: {Actores:[]}},{ upsert: true })<br>
+{ “acknowledged” : true, “matchedCount” : 8, “modifiedCount” : 8 }</li>
+<li><strong>db.movies.update</strong>({ _id:ObjectId(“5fac9effa7b9bdf5277d5fb0”)},{ $ set: {genero:“drama”}})<br>
+WriteResult({ “nMatched” : 1, “nUpserted” : 0, “nModified” : 1 })</li>
+<li><strong>db.movies.find</strong>({pais:“USA”})<br>
+{ “_id” : ObjectId(“5fac9effa7b9bdf5277d5fb0”), “nombre” : “Terminator”, “anio” : 1999, “rating” : 1, “genero” : “drama”, “pais” : “USA”, “duracion” : 120, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f10a7b9bdf5277d5fb1”), “nombre” : “Terminator 2”, “anio” : 2002, “rating” : 2, “genero” : “Accion”, “pais” : “USA”, “duracion” : 130, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb2”), “nombre” : “Gladiador”, “anio” : 2002, “rating” : 4, “genero” : “Accion”, “pais” : “USA”, “duracion” : 150, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb3”), “nombre” : “Frozen”, “anio” : 2016, “rating” : 3, “genero” : “Animada”, “pais” : “USA”, “duracion” : 120, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb4”), “nombre” : “Monsters Ink.”, “anio” : 2006, “rating” : 4, “genero” : “Animada”, “pais” : “USA”, “duracion” : 130, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb5”), “nombre” : “Piratas del caribe”, “anio” : 2012, “rating” : 3, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb6”), “nombre” : “Piratas del caribe 3”, “anio” : 2014, “rating” : 2, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb7”), “nombre” : “Piratas del caribe 2”, “anio” : 2015, “rating” : 5, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “destacada” : true, “Actores” : [ ] }</li>
+<li><strong>db.movies.find</strong>({genero:“Aventura”, rating:{ $ gt:3.5}, anio:{ $ gt:2008}})<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb7”), “nombre” : “Piratas del caribe 2”, “anio” : 2015, “rating” : 5, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “destacada” : true, “Actores” : [ ] }</li>
+<li><strong>db.movies.deleteMany</strong>({anio:{ $lt : 1990}})<br>
+{ “acknowledged” : true, “deletedCount” : 0 }</li>
+</ol>
+<h1 id="ejercicio-clase-3">Ejercicio clase 3</h1>
+<ol>
+<li>
+<p>Utilizar la misma base de datos de películas e insertar varias películas con distinto contenido.</p>
+</li>
+<li>
+<p>Listar todas las películas del año 2018.</p>
+</li>
+<li>
+<p>Listar las 10 primeras películas de Hollywood.</p>
+</li>
+<li>
+<p>Listar las 5 películas más taquilleras.</p>
+</li>
+<li>
+<p>Listar el 2do conjunto de 5 películas más taquilleras.</p>
+</li>
+<li>
+<p>Repetir query 3 y 4 pero retornando sólo el título y genre.</p>
+</li>
+<li>
+<p>Mostrar los distintos países que existen en la base de datos.</p>
+</li>
+</ol>
+<h2 id="comandos-2">Comandos</h2>
+<ol>
+<li><strong>db.movies.find</strong>({pais: “USA”}).limit(2).sort({anio: 1})<br>
+{ “_id” : ObjectId(“5fac9effa7b9bdf5277d5fb0”), “nombre” : “Terminator”, “anio” : 1999, “rating” : 1, “genero” : “drama”, “pais” : “USA”, “duracion” : 120, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f10a7b9bdf5277d5fb1”), “nombre” : “Terminator 2”, “anio” : 2002, “rating” : 2, “genero” : “Accion”, “pais” : “USA”, “duracion” : 130, “Actores” : [ ] }</li>
+<li><strong>db.movies.find().limit(5).sort</strong>({rating: -1})<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb7”), “nombre” : “Piratas del caribe 2”, “anio” : 2015, “rating” : 5, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb4”), “nombre” : “Monsters Ink.”, “anio” : 2006, “rating” : 4, “genero” : “Animada”, “pais” : “USA”, “duracion” : 130, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb2”), “nombre” : “Gladiador”, “anio” : 2002, “rating” : 4, “genero” : “Accion”, “pais” : “USA”, “duracion” : 150, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb5”), “nombre” : “Piratas del caribe”, “anio” : 2012, “rating” : 3, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5fac9f2aa7b9bdf5277d5fb3”), “nombre” : “Frozen”, “anio” : 2016, “rating” : 3, “genero” : “Animada”, “pais” : “USA”, “duracion” : 120, “Actores” : [ ] }</li>
+<li><strong>db.movies.find().limit(5).sort</strong>({rating: -1})<br>
+{ “_id” : ObjectId(“5f99de257122a36a66550462”), “nombre” : “Piratas del caribe 2”, “anio” : 2015, “rating” : 5, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5f99de257122a36a6655045f”), “nombre” : “Monsters Ink.”, “anio” : 2006, “rating” : 4, “genero” : “Animada”, “pais” : “USA”, “duracion” : 130, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5f99de257122a36a6655045d”), “nombre” : “Gladiador”, “anio” : 2002, “rating” : 4, “genero” : “Accion”, “pais” : “USA”, “duracion” : 150, “destacada” : true, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5f99de257122a36a66550460”), “nombre” : “Piratas del caribe”, “anio” : 2012, “rating” : 3, “genero” : “Aventura”, “pais” : “USA”, “duracion” : 130, “Actores” : [ ] }<br>
+{ “_id” : ObjectId(“5f99de257122a36a6655045e”), “nombre” : “Frozen”, “anio” : 2016, “rating” : 3, “genero” : “Animada”, “pais” : “USA”, “duracion” : 120, “Actores” : [ ] }</li>
+<li><strong>db.movies.find</strong>({pais: “USA”}, {nombre: 1, genero:1, _id:0}).limit(10).sort({anio: 1})<br>
+{ “nombre” : “Terminator”, “genero” : “Accion” }<br>
+{ “nombre” : “Terminator 2”, “genero” : “Accion” }<br>
+{ “nombre” : “Gladiador”, “genero” : “Accion” }<br>
+{ “nombre” : “Monsters Ink.”, “genero” : “Animada” }<br>
+{ “nombre” : “Piratas del caribe”, “genero” : “Aventura” }<br>
+{ “nombre” : “Piratas del caribe 3”, “genero” : “Aventura” }<br>
+{ “nombre” : “Piratas del caribe 2”, “genero” : “Aventura” }<br>
+{ “nombre” : “Frozen”, “genero” : “Animada” }</li>
+<li><strong>db.movies.find</strong>({}, {nombre: 1, genero: 1, _id: 0}).limit(2).sort({rating: -1})<br>
+{ “nombre” : “Piratas del caribe 2”, “genero” : “Aventura” }<br>
+{ “nombre” : “Monsters Ink.”, “genero” : “Animada” }</li>
+<li><strong>db.movies.distinct</strong>(“pais”)<br>
+[ “USA” ]</li>
+<li><strong>db.movies.distinct</strong>(“genero”)<br>
+[ “Accion”, “Animada”, “Aventura” ]</li>
+</ol>
+</div>
+</body>
+
+</html>
