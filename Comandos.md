@@ -19,8 +19,8 @@ Este archivo contiene los comandos de los ejercicios del seminario de MongoDB
     
 7.  Crear otras collections con documentos (ej. teams, games, etc).
 ## Comandos
- **mongod** 
- **show dbs;**  
+**mongod**
+**show dbs;**  
 admin       0.000GB
 config      0.000GB
 local       0.000GB
