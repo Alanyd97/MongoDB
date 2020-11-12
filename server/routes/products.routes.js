@@ -13,6 +13,8 @@ router.post('/', productController.createProduct);
 
 router.put('/:id', productController.updateProduct);
 
+router.put('/stock/:id', productController.updateStock);
+
 router.delete('/:id', productController.deleteProduct);
 
 
