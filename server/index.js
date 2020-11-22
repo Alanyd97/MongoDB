@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const {mongoose} = require('./database');
 //Settings
 //creo y seteo el puerto GLOBAL del servidor nivel aplicacion
-app.set('port', "https://seminario-mongodb.herokuapp.com/" || 3000);
+app.set('port', process.env.PORT || 3000);
 
 
 
