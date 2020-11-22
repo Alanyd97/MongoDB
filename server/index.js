@@ -24,6 +24,6 @@ app.use('/api/products',require('./routes/products.routes'));
 
 
 //Starting the server
-app.listen(app.get('port'), app.get('host') , ()=> {
+app.listen(app.get('port') , ()=> {
     console.log('Server on port: '+app.get('port'))
 })
