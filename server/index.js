@@ -5,6 +5,7 @@ const {mongoose} = require('./database');
 //Settings
 //creo y seteo el puerto GLOBAL del servidor nivel aplicacion
 app.set('port', process.env.PORT || 3000);
+app.set('host', process.env.HOST || '0.0.0.0');
 
 
 
@@ -23,6 +24,6 @@ app.use('/api/products',require('./routes/products.routes'));
 
 
 //Starting the server
-app.listen(app.get('port'), ()=> {
+app.listen(app.get('port'), app.get('host') , ()=> {
     console.log('Server on port: '+app.get('port'))
 })
