@@ -4,10 +4,8 @@ const Product = require('../models/product');
 
 //Gets
 productController.getProducts = async (req, res) => {
-   console.log("llego");
    const products = await Product.find();
    if(products){
-      console.log("llego 2");
       res.json(products);
    }
    else{
