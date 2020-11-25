@@ -1,7 +1,8 @@
 
 const shoppingCartController = {};
-const productController = require ('../controllers/product.controller');
+const ProductModel = require('../models/product');
 const Cart = require('../models/shoppingcart');
+
 
 //get all
 shoppingCartController.getHistory = async (req, res) => {
@@ -22,6 +23,20 @@ shoppingCartController.getHistory = async (req, res) => {
  
  //Post
  shoppingCartController.createShoppingCart = async (req, res) =>{
+    let productRequest = {
+        "products": req.body.products,
+        "gastoTotal": req.body.gastoTotal
+    }
+    producRequest.products.forEach(producto => {
+        let product = await ProductModel.findById(producto.id);
+        if(product){
+            if(product.stock >= producto.stockSolicitado){
+                //La comprobacion de stock se hace desde el frontend.
+                let newStock = product.stock - producto.stockSolicitado;
+                ProductModel.findByIdAndUpdate(producto.id, {$set: {stock: newStock}})
+            }
+        }
+    });  
     const cart = new Cart(req.body);
     let respuesta = await cart.save();
     if (respuesta){
