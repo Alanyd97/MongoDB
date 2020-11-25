@@ -4,7 +4,6 @@ const Product = require('../models/product');
 
 //Gets
 productController.getProducts = async (req, res) => {
-   console.log("llego");
    const products = await Product.find();
    if(products){
       console.log("llego 2");
@@ -18,7 +17,6 @@ productController.getProducts = async (req, res) => {
 productController.findProduct = async (req, res) =>{
    const product = await Product.findById(req.params.id);
    res.json(product);
-
 }
 
 //Post
