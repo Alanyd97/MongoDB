@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-
 const {Schema} = mongoose;
 
 const ShoppingCartSchema = new Schema({
-    product: {type:[ProductSchema], required: true},
+    product: {type: Array},
     total:{type:Number, required: true}
 });
 

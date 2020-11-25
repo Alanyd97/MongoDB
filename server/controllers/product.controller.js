@@ -16,7 +16,6 @@ productController.getProducts = async (req, res) => {
 productController.findProduct = async (req, res) =>{
    const product = await Product.findById(req.params.id);
    res.json(product);
-
 }
 
 //Post

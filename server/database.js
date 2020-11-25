@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require('dotenv').config({path: 'variables.env' })
 /*
 **le dice a mongo donde buscar la base de datos
 **si esta no existe la crea

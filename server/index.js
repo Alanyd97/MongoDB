@@ -10,8 +10,6 @@ app.set('port', process.env.PORT || 3000);
 
 //MidlleWares
 
-//manda mensajes a consola vscode peticiones
-app.use(morgan('dev'));
 //configura al servidor para interpretar json
 app.use(express.json());
 
@@ -19,6 +17,7 @@ app.use(express.json());
 // Routes
 
 app.use('/api/products',require('./routes/products.routes'));
+app.use('/api/cart',require('./routes/shoppingcart.routes'));
 
 
 
