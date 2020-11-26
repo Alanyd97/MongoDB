@@ -1,5 +1,6 @@
 const productController = {};
 const Product = require('../models/product');
+const Cart = require('../models/shoppingcart');
 
 
 //Gets
@@ -16,6 +17,7 @@ productController.getProducts = async (req, res) => {
 productController.findProduct = async (req, res) =>{
    const product = await Product.findById(req.params.id);
    res.json(product);
+
 }
 
 //Post
@@ -47,22 +49,28 @@ productController.updateProduct =async (req, res) =>{
    }
 }
 productController.updateStock =async (req, res) =>{
-   const { id } = req.params;
-   const productReq = {
-      "stock": req.body.stock
-   }
-   const product = await Product.findById(id);
-   if(product.stock >= productReq.stock){
-      product.stock = product.stock -  productReq.stock;
-      await Product.findByIdAndUpdate(id, {$set: product});
-      res.json({
-         "status": "Updated"
-      });
-   }else{
-      res.json({
-         "status": "No tiene suficiente stock"
-      });
-   }
+   console.log("llego");
+   const cart = new Cart();
+    cart.total = req.body.total;
+    req.body.products.forEach(producto => {
+        cart.product.push(producto);
+    });
+   cart.product.forEach(async producto => {
+      const product = await Product.findById(producto.id);
+      if(product.stock >= producto.stokRequerido){
+         product.stock = product.stock -  producto.stokRequerido;
+         await Product.findByIdAndUpdate(producto.id, {$set: product});
+         res.json({
+            "status": "Updated"
+         });
+      }else{
+         res.json({
+            "status": "No tiene suficiente stock"
+         });
+      }
+   });
+   
+   
 }
 
 //Delete
